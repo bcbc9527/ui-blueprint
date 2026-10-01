@@ -29,7 +29,7 @@ window.ACTOR = {
     { name: "郑海", note: "同演 2 部", img: 15 },
     { name: "乔远", note: "同演 1 部", img: 33 },
   ],
-  /* signature:代表作(会被红圈圈住) */
+  /* signature:代表作(出现在“代表作”区) */
   works: [
     { id: "huichao", title: "回潮", year: 2025, type: "电影", role: "许望(渔村修船工)", director: "沈清禾", rating: 8.1,
       line: "退潮后的渔村里,一艘船修了三十年,还没下水。" },

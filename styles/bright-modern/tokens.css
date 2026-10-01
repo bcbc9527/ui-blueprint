@@ -1,0 +1,58 @@
+/* Style: bright-modern(明亮现代)
+   白底、大留白、大号无衬线、大图;唯一的强调色是亮黄,只用于“要你注意的一小块”。
+   令牌名遵守 styles/_template 的契约;文末 extension 是本风格的补充。 */
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap");
+
+:root {
+  /* color */
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f2f3f5;     /* 图片加载前的底色、分组底 */
+  --color-text: #14171f;            /* 墨:略带蓝的深色 */
+  --color-text-muted: #5b626e;
+  --color-border: #e3e5e9;
+  --color-primary: #ffd21f;         /* 亮黄:徽标、主按钮的底色,上面一律放墨色文字 */
+  --color-primary-hover: #f2c200;
+  --color-primary-contrast: #14171f;
+  --color-accent-soft: #fff4c2;
+
+  /* font */
+  --font-sans: "Noto Sans SC", ui-sans-serif, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-display: "Bricolage Grotesque", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* type scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.75rem;
+  --text-2xl: clamp(2rem, 4vw, 3rem);
+  --text-3xl: clamp(4rem, 10.5vw, 8.5rem);
+
+  /* space */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 6rem;
+
+  /* shape & depth:圆角分层——小件小、图片大、容器最大 */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 28px;
+  --shadow-sm: none;
+  --shadow-md: 0 30px 80px -30px rgb(20 23 31 / 0.45);
+
+  /* layout & motion */
+  --container: 1200px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --duration: 180ms;
+
+  /* extension */
+  --space-9: 8rem;
+  --gutter: clamp(1rem, 4vw, 2rem);
+}

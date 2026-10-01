@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>林知远 — 演员主页(明亮现代)</title>
+  <meta name="description" content="明亮现代风格的演员主页示例:大字姓名、大图、代表作与全部作品。">
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../../../styles/bright-modern/tokens.css">
+  <link rel="stylesheet" href="../../../shared/base.css">
+  <link rel="stylesheet" href="../../../styles/bright-modern/components.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="bar container">
+    <nav aria-label="面包屑">
+      <ol class="crumbs">
+        <li>影视库</li>
+        <li>演员</li>
+        <li aria-current="page">林知远</li>
+      </ol>
+    </nav>
+    <a class="bar__back" href="../../../index.html">返回示例总览</a>
+  </header>
+
+  <main>
+    <section class="hero container" aria-labelledby="name">
+      <div class="hero__text">
+        <h1 class="name" id="name">
+          <span class="name__zh" id="nameZh"></span>
+          <span class="name__en" id="nameEn"></span>
+        </h1>
+        <p class="lede" id="lede"></p>
+        <dl class="facts" id="facts"></dl>
+        <div class="actions">
+          <button class="btn btn-primary" id="follow" type="button" aria-pressed="false">关注</button>
+          <button class="btn" id="share" type="button">分享</button>
+          <span class="actions__status" id="status" role="status" aria-live="polite"></span>
+        </div>
+      </div>
+      <figure class="portrait" id="portrait"></figure>
+    </section>
+
+    <section class="featured container" aria-labelledby="featuredH">
+      <h2 id="featuredH">代表作</h2>
+      <div class="featured__list" id="featured"></div>
+    </section>
+
+    <section class="works container" aria-labelledby="worksH">
+      <div class="works__head">
+        <h2 id="worksH">全部作品</h2>
+        <div class="works__tools">
+          <div class="pills" id="filter" role="group" aria-label="按类型筛选">
+            <button type="button" data-type="all" aria-pressed="true">全部</button>
+            <button type="button" data-type="电影" aria-pressed="false">电影</button>
+            <button type="button" data-type="剧集" aria-pressed="false">剧集</button>
+            <button type="button" data-type="综艺" aria-pressed="false">综艺</button>
+          </div>
+          <p class="works__count" id="count" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+      <ul class="grid" id="grid"></ul>
+    </section>
+
+    <section class="about container">
+      <div class="about__bio" aria-labelledby="bioH">
+        <h2 id="bioH">简介</h2>
+        <div class="prose" id="bio"></div>
+      </div>
+      <div class="about__awards" aria-labelledby="awardsH">
+        <h2 id="awardsH">获奖</h2>
+        <ul class="awards" id="awards"></ul>
+      </div>
+    </section>
+
+    <section class="costars container" aria-labelledby="costarsH">
+      <h2 id="costarsH">常合作的演员</h2>
+      <ul class="faces" id="costars"></ul>
+    </section>
+  </main>
+
+  <footer class="foot container">
+    <p>示例页面。人物、作品、奖项均为虚构,图片为免费图床的占位图。</p>
+    <a href="../../../index.html">返回示例总览</a>
+  </footer>
+
+  <dialog class="sheet" id="sheet" aria-labelledby="sheetTitle">
+    <div class="sheet__img" id="sheetImg"></div>
+    <div class="sheet__body">
+      <p class="sheet__flag" id="sheetFlag" hidden><span class="chip">代表作</span></p>
+      <h3 id="sheetTitle" class="sheet__title"></h3>
+      <p class="sheet__line" id="sheetLine"></p>
+      <dl class="sheet__facts" id="sheetFacts"></dl>
+      <div class="sheet__nav">
+        <button class="btn" type="button" id="prev">上一部</button>
+        <button class="btn" type="button" id="next">下一部</button>
+        <button class="btn btn-primary" type="button" id="close">关闭</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="./data.js"></script>
+  <script src="./art.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>

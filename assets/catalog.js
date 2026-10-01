@@ -10,15 +10,15 @@ window.CATALOG = {
   },
   styles: {
     "minimal-light": "极简浅色",
-    "contact-sheet": "联系印样",
+    "bright-modern": "明亮现代",
   },
   examples: [
     {
-      path: "examples/actor-profile/contact-sheet/",
+      path: "examples/actor-profile/bright-modern/",
       title: "林知远 演员主页",
       useCase: "actor-profile",
-      style: "contact-sheet",
-      description: "作品是底片上的帧,代表作被红笔圈出;点击任一帧放大查看。",
+      style: "bright-modern",
+      description: "大字姓名、代表作大卡、海报网格与类型筛选;点击任一作品查看详情。",
     },
     {
       path: "examples/landing/minimal-light/",
