@@ -21,7 +21,7 @@
 |---|---|---|
 | `--ref-*` | 原始值,**不要在示例里直接用** | `--ref-blue-600` |
 | `--color-*` | 颜色角色 | `--color-text`、`--color-primary` |
-| `--font-*` `--weight-*` `--leading-*` `--text-*` | 字体、字重、行高、字号 | `--text-lg` |
+| `--font-*` `--weight-*` `--leading-*` `--tracking-*` `--text-*` | 字体、字重、行高、字距、字号 | `--text-lg` |
 | `--space-*` | 间距刻度 | `--space-5` |
 | `--gap-*` `--pad-*` | 间距的角色 | `--gap-aisle`、`--pad-card` |
 | `--radius-*` | 圆角角色 | `--radius-control` |
@@ -54,7 +54,15 @@
 - 状态用填充或颜色变化表达,同一图标不换款。
 - 仅图标的按钮必须有 `aria-label`。
 
-## 六、自动检查
+## 六、主题(明/暗)
+主题只改**第 2 层的颜色映射**,示例与组件不为暗色单独写任何颜色。参考 `styles/typeset/tokens.css` 文末:
+```css
+:root[data-theme="dark"] { --color-bg: var(--ref-night-950); /* …其余 --color-* 重映射… */ }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { /* 同上:无显式选择时跟随系统 */ } }
+```
+页面在 `<head>` 里用一小段脚本在渲染前确定 `data-theme`(先读用户上次的选择,再看系统偏好),避免闪烁;切换按钮只改这个属性。
+
+## 七、自动检查
 ```bash
 node scripts/check-tokens.mjs                 # 检查整个仓库
 node scripts/check-tokens.mjs examples/xxx    # 只检查某个示例

@@ -28,7 +28,7 @@ body::before {
   height: var(--btn-h); padding: 0 var(--btn-pad-x);
   border: 0; border-radius: var(--btn-radius);
   background: var(--btn-bg); color: var(--btn-fg);
-  font: var(--weight-medium) var(--text-sm)/1 var(--font-sans); white-space: nowrap; cursor: pointer;
+  font: var(--weight-medium) var(--text-sm)/1 var(--font-sans); white-space: nowrap; cursor: pointer; text-decoration: none;
   transition: background var(--duration) var(--ease), transform var(--duration-fast) var(--ease);
 }
 .btn:hover:not(:disabled) { background: var(--btn-bg-hover); }

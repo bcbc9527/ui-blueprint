@@ -1,4 +1,4 @@
-/* photo-paper 的通用组件。
+/* typeset 的通用组件。
    规则:只使用语义令牌(第 2 层);每个组件在自己的作用域里声明“组件令牌”(第 3 层),
    实例可以局部覆盖,例如 <button class="btn" style="--btn-h: var(--control-h-lg)">。 */
 
@@ -8,11 +8,6 @@
 .visually-hidden {
   position: absolute; width: var(--border-width); height: var(--border-width); margin: calc(-1 * var(--border-width)); padding: 0;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
-}
-/* 铜版纸颗粒:压在整页之上、不拦截点击。弹窗在顶层,不受影响 */
-body::before {
-  content: ""; position: fixed; inset: 0; z-index: var(--z-texture); pointer-events: none;
-  background-image: var(--texture-paper); opacity: var(--texture-paper-opacity); mix-blend-mode: multiply;
 }
 :focus-visible { outline: var(--focus-ring-width) solid var(--color-focus); outline-offset: var(--focus-ring-offset); }
 
@@ -85,3 +80,33 @@ button.chip:hover { background: var(--color-border); }
 /* 照片(带微圆角、加载前的底色) */
 .photo { border-radius: var(--radius-media); overflow: hidden; background: var(--color-skeleton); }
 .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ---------- 文本域 ---------- */
+.textarea {
+  width: 100%; min-height: calc(var(--control-h-lg) * 2); padding: var(--space-4);
+  border: var(--border-width) solid var(--color-border); border-radius: var(--radius-control);
+  background: var(--color-surface); color: var(--color-text); resize: vertical;
+  font: var(--weight-regular) var(--text-md)/var(--leading-normal) var(--font-sans);
+}
+.textarea:focus-visible { outline: var(--focus-ring-width) solid var(--color-focus); outline-offset: 0; }
+
+/* ---------- 分段控件(用于互斥选项,如 横排/竖排) ---------- */
+.seg { display: inline-flex; padding: var(--space-1); gap: var(--space-1); border-radius: var(--radius-control); background: var(--color-surface-alt); }
+.seg button {
+  display: inline-flex; align-items: center; gap: var(--gap-inline); height: var(--control-h-sm); padding: 0 var(--space-4);
+  border: 0; border-radius: var(--radius-media); background: transparent; color: var(--color-text-muted);
+  font: var(--weight-medium) var(--text-sm)/1 var(--font-sans); cursor: pointer;
+}
+.seg button:hover { color: var(--color-text); }
+.seg button[aria-pressed="true"] { background: var(--color-surface); color: var(--color-text); }
+
+/* ---------- 滑块 ---------- */
+.range { display: grid; gap: var(--space-2); }
+.range__head { display: flex; justify-content: space-between; align-items: baseline; font-size: var(--text-sm); color: var(--color-text-muted); }
+.range__head output { color: var(--color-text); font-variant-numeric: tabular-nums; font-weight: var(--weight-medium); }
+.range input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: var(--range-thumb); background: transparent; cursor: pointer; }
+.range input[type="range"]::-webkit-slider-runnable-track { height: var(--range-track-h); border-radius: var(--radius-pill); background: var(--color-border-strong); }
+.range input[type="range"]::-moz-range-track { height: var(--range-track-h); border-radius: var(--radius-pill); background: var(--color-border-strong); }
+.range input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: var(--range-thumb); height: var(--range-thumb); margin-top: calc((var(--range-track-h) - var(--range-thumb)) / 2); border: 0; border-radius: var(--radius-round); background: var(--color-primary); }
+.range input[type="range"]::-moz-range-thumb { width: var(--range-thumb); height: var(--range-thumb); border: 0; border-radius: var(--radius-round); background: var(--color-primary); }
+.range input[type="range"]:focus-visible { outline-offset: var(--focus-ring-offset); }

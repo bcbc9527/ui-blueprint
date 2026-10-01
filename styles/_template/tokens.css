@@ -95,6 +95,9 @@
   --leading-normal: 1.6;
   --leading-relaxed: 1.85;
   --tracking-tight: -0.02em;
+  --tracking-wide: 0.04em;
+  --tracking-wider: 0.08em;
+  --tracking-widest: 0.12em;
 
   /* 字号(角色向的别名映射到刻度;大标题带响应式) */
   --text-xs: var(--ref-text-1);

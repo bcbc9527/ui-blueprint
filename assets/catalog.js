@@ -9,14 +9,23 @@ window.CATALOG = {
     "actor-profile": "演员主页",
     "photographer-profile": "摄影师主页",
     "photo-feed": "摄影社区发现页",
+    "type-specimen": "字体专题",
   },
   styles: {
     "minimal-light": "极简浅色",
     "bright-modern": "明亮现代",
     "photo-dark": "摄影暗色",
     "photo-paper": "摄影铜版纸",
+    "typeset": "组版(明/暗)",
   },
   examples: [
+    {
+      path: "examples/type-specimen/typeset/",
+      title: "明朝体 字体专题",
+      useCase: "type-specimen",
+      style: "typeset",
+      description: "字形解剖、历史脉络、与黑体对比、六款字体在线试排与竖排;支持明/暗主题。",
+    },
     {
       path: "examples/photo-feed/photo-paper/",
       title: "光合 摄影社区发现页",

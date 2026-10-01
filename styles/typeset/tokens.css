@@ -1,0 +1,254 @@
+/* ============================================================================
+   Style: typeset(组版)
+   冷白纸 + 靛蓝(藍)。罫线(细线)是内容的一部分:基线、字面框、栏线。明/暗两套主题。
+   圆角偏小,像印刷品:图 2px、控件 6px、容器 8px、浮层 12px。
+
+   令牌分三层——这是整个设计系统的骨架:
+     第 1 层 ref(原始值)   调色板、间距/圆角/字号刻度。只有这一层写字面量,且只被第 2 层引用。
+     第 2 层 semantic(语义) 按“角色”命名:--color-text、--radius-control、--gap-aisle……
+                              示例与组件只能用这一层(以及各组件自己声明的局部令牌)。
+     第 3 层 component(组件) 写在 components.css 里,如 .btn 的 --btn-h、--btn-radius,
+                              从第 2 层取值,可在单个实例上覆盖。
+   换风格 = 改第 1 层的值 + 第 2 层的映射;示例与组件一行都不用动。
+   令牌的完整约定与圆角用法见 docs/tokens.md。
+   主题:语义层的颜色在 :root[data-theme="dark"] 中整体换映射(示例与组件无需改动)。
+   ========================================================================== */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@300;400;500;600;700;900&display=swap");
+:root {
+  /* ======================= 第 1 层 · ref(原始值) ======================= */
+
+  /* 调色板(亮):冷白纸与藍墨 */
+  --ref-paper-0: #ffffff;
+  --ref-paper-50: #f6f7f8;
+  --ref-paper-100: #eceef0;
+  --ref-paper-200: #dde0e4;
+  --ref-paper-300: #c3c8cf;
+  --ref-ink-900: #14171d;
+  --ref-ink-700: #333945;
+  --ref-ink-500: #4a5160;
+  --ref-indigo-600: #2f4390;
+  --ref-indigo-700: #26377a;
+  --ref-indigo-100: #e3e8f7;
+  --ref-red-600: #c0392b;
+  --ref-ink-a72: rgb(20 23 29 / 0.72);
+  /* 调色板(暗):深藍墨与冷灰字 */
+  --ref-night-950: #0d1016;
+  --ref-night-900: #141922;
+  --ref-night-800: #1c222d;
+  --ref-night-700: #2a3140;
+  --ref-night-600: #3b4558;
+  --ref-mist-100: #e9ecf1;
+  --ref-mist-400: #a6aebd;
+  --ref-periwinkle-400: #93a6ff;
+  --ref-periwinkle-500: #6b82f0;
+
+  /* 间距刻度(4px 基准) */
+  --ref-space-1: 0.25rem;
+  --ref-space-2: 0.5rem;
+  --ref-space-3: 0.75rem;
+  --ref-space-4: 1rem;
+  --ref-space-5: 1.5rem;
+  --ref-space-6: 2rem;
+  --ref-space-7: 3rem;
+  --ref-space-8: 4rem;
+  --ref-space-9: 6rem;
+  --ref-space-10: 8rem;
+
+  /* 圆角刻度 */
+  --ref-radius-1: 2px;
+  --ref-radius-2: 6px;
+  --ref-radius-3: 8px;
+  --ref-radius-4: 12px;
+  --ref-radius-full: 999px;
+
+  /* 字号刻度 */
+  --ref-text-1: 0.75rem;
+  --ref-text-2: 0.875rem;
+  --ref-text-3: 1rem;
+  --ref-text-4: 1.25rem;
+  --ref-text-5: 1.75rem;
+
+  /* ======================= 第 2 层 · semantic(语义) ======================= */
+
+  /* 颜色(亮主题;暗主题见文末) */
+  --color-bg: var(--ref-paper-50);
+  --color-surface: var(--ref-paper-0);
+  --color-surface-alt: var(--ref-paper-100);
+  --color-skeleton: var(--ref-paper-100);
+  --color-text: var(--ref-ink-900);
+  --color-text-muted: var(--ref-ink-500);
+  --color-border: var(--ref-paper-200);
+  --color-border-strong: var(--ref-paper-300);
+  --color-primary: var(--ref-indigo-600);
+  --color-primary-hover: var(--ref-indigo-700);
+  --color-primary-contrast: var(--ref-paper-0);
+  --color-accent-soft: var(--ref-indigo-100);
+  --color-link: var(--ref-indigo-600);
+  --color-danger: var(--ref-red-600);
+  --color-focus: var(--ref-indigo-600);
+  --color-scrim: var(--ref-ink-a72);
+  --color-on-scrim: var(--ref-paper-0);
+  --color-on-media: var(--ref-paper-0);
+  --color-annotation: var(--ref-indigo-600);   /* 字形解剖图上的标注线 */
+
+  /* 字体 */
+  --font-sans: "Noto Sans SC", ui-sans-serif, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-serif: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  --font-display: var(--font-serif);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* 被讨论的“标本字体”。这些字体由示例页面自己加载(体积大,按需引入) */
+  --font-mincho-shippori: "Shippori Mincho", "Noto Serif JP", serif;
+  --font-mincho-zen: "Zen Old Mincho", "Noto Serif JP", serif;
+  --font-mincho-noto: "Noto Serif JP", serif;
+  --font-mincho-biz: "BIZ UDPMincho", "Noto Serif JP", serif;
+  --font-mincho-kaisei: "Kaisei Tokumin", "Noto Serif JP", serif;
+  --font-song-sc: "Noto Serif SC", "Songti SC", serif;
+  --font-gothic-ref: "Zen Kaku Gothic New", "Noto Sans JP", sans-serif;
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+  --weight-black: 800;
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.85;
+  --leading-vertical: 2;                    /* 竖排的列距 */
+  --tracking-tight: -0.02em;
+  --tracking-wide: 0.04em;
+  --tracking-wider: 0.08em;
+  --tracking-widest: 0.12em;
+
+  /* 字号(角色向的别名映射到刻度;大标题带响应式) */
+  --text-xs: var(--ref-text-1);
+  --text-sm: var(--ref-text-2);
+  --text-md: var(--ref-text-3);
+  --text-lg: var(--ref-text-4);
+  --text-xl: var(--ref-text-5);
+  --text-2xl: clamp(2rem, 3.4vw, 2.75rem);
+  --text-3xl: clamp(2.5rem, 5vw, 4.25rem);
+  --text-specimen-hero: clamp(5.5rem, 12vw, 11.5rem);      /* 开篇的竖排巨字 */
+  --text-specimen-glyph: clamp(11rem, 24vw, 21rem);      /* 字形解剖的单字 */
+
+  /* 间距 */
+  --space-1: var(--ref-space-1);
+  --space-2: var(--ref-space-2);
+  --space-3: var(--ref-space-3);
+  --space-4: var(--ref-space-4);
+  --space-5: var(--ref-space-5);
+  --space-6: var(--ref-space-6);
+  --space-7: var(--ref-space-7);
+  --space-8: var(--ref-space-8);
+  --space-9: var(--ref-space-9);
+  --space-10: var(--ref-space-10);
+  /* 间距的“角色”:边界靠这些留白形成 */
+  --gap-inline: var(--space-2);                        /* 图标与文字、相邻小控件 */
+  --gap-stack: var(--space-4);                         /* 同一组内容上下 */
+  --gap-aisle: clamp(1.25rem, 2.2vw, 2rem);            /* 同级项目之间 */
+  --gap-section: var(--space-10);                      /* 大区块之间 */
+  --pad-card: var(--space-5);
+  --pad-page: clamp(1.25rem, 4vw, 4rem);
+  --gutter: var(--pad-page);
+
+  /* 圆角:按“角色”命名,而不是按大小命名。何时用哪个,见 docs/tokens.md */
+  --radius-media: var(--ref-radius-1);      /* 图、字形框、标本框——印刷品的微圆角 */
+  --radius-control: var(--ref-radius-2);    /* 按钮、输入框、下拉等可操作控件 */
+  --radius-surface: var(--ref-radius-3);    /* 卡片、面板等承载内容的容器 */
+  --radius-overlay: var(--ref-radius-4);    /* 弹窗、抽屉等浮在页面之上的最大容器 */
+  --radius-pill: var(--ref-radius-full);    /* 标签、徽标、分段选项 */
+  --radius-round: 50%;                      /* 头像 */
+  --radius-sm: var(--radius-media);         /* 旧名兼容:sm / md / lg */
+  --radius-md: var(--radius-control);
+  --radius-lg: var(--radius-surface);
+
+  /* 深度:边界靠留白与明度差,不靠阴影 */
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-raised: 0 1.5rem 4rem -1rem rgb(20 23 29 / 0.28);  /* 仅浮层 */
+
+  /* 尺寸 */
+  --control-h-sm: 2.25rem;
+  --control-h-md: 2.75rem;
+  --control-h-lg: 3.25rem;
+  --icon-sm: 1rem;
+  --icon-md: 1.25rem;
+  --icon-lg: 1.5rem;
+  --icon-stroke: 1.75;
+  --avatar-sm: 1.75rem;
+  --avatar-md: 2.5rem;
+  --avatar-lg: 4rem;
+  --avatar-xl: 6rem;
+  --border-width: 1px;
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+
+  /* 布局 */
+  --container: 80rem;
+  --container-wide: 90rem;
+  --measure: 34em;                          /* 正文行宽上限(约 34 个汉字) */
+  --card-min-w: 17rem;
+  --glyph-box: clamp(17rem, 34vw, 30rem);   /* 字形解剖的方框(单字取其 0.82) */
+  --timeline-when-w: 9rem;
+  --vertical-h: 34rem;                      /* 竖排展示框的高度 */
+  --controls-w: 24rem;                      /* 试排台左侧控制栏宽度 */
+  --hotspot-size: 4rem;                     /* 字形解剖的标注圈 */
+  --rule-width: 1px;
+  --rule-width-strong: 2px;
+  --range-track-h: 0.25rem;
+  --range-thumb: 1.25rem;
+
+  /* 动效 */
+  --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+  --duration-fast: 120ms;
+  --duration: 200ms;
+  --duration-slow: 1200ms;
+
+  /* 层级 */
+  --z-sticky: 20;
+
+  color-scheme: light dark;
+}
+
+/* ======================= 暗主题:只重映射第 2 层颜色 ======================= */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-bg: var(--ref-night-950);
+  --color-surface: var(--ref-night-900);
+  --color-surface-alt: var(--ref-night-800);
+  --color-skeleton: var(--ref-night-800);
+  --color-text: var(--ref-mist-100);
+  --color-text-muted: var(--ref-mist-400);
+  --color-border: var(--ref-night-700);
+  --color-border-strong: var(--ref-night-600);
+  --color-primary: var(--ref-periwinkle-500);
+  --color-primary-hover: var(--ref-periwinkle-400);
+  --color-primary-contrast: var(--ref-night-950);
+  --color-accent-soft: var(--ref-night-800);
+  --color-link: var(--ref-periwinkle-400);
+  --color-focus: var(--ref-periwinkle-400);
+  --color-annotation: var(--ref-periwinkle-400);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --color-bg: var(--ref-night-950);
+    --color-surface: var(--ref-night-900);
+    --color-surface-alt: var(--ref-night-800);
+    --color-skeleton: var(--ref-night-800);
+    --color-text: var(--ref-mist-100);
+    --color-text-muted: var(--ref-mist-400);
+    --color-border: var(--ref-night-700);
+    --color-border-strong: var(--ref-night-600);
+    --color-primary: var(--ref-periwinkle-500);
+    --color-primary-hover: var(--ref-periwinkle-400);
+    --color-primary-contrast: var(--ref-night-950);
+    --color-accent-soft: var(--ref-night-800);
+    --color-link: var(--ref-periwinkle-400);
+    --color-focus: var(--ref-periwinkle-400);
+    --color-annotation: var(--ref-periwinkle-400);
+  }
+}
+
+@media (max-width: 900px) {
+  :root { --vertical-h: 28rem; }
+}

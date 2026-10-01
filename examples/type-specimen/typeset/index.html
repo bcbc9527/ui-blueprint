@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>明朝体 — 字体专题（组版）</title>
+  <meta name="description" content="明朝体字体专题示例：字形解剖、历史脉络、与黑体对比、在线试排与竖排。">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- 标本字体：体积较大，只在这个示例里引入 -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Zen+Old+Mincho:wght@400;500;600;700;900&family=Noto+Serif+JP:wght@200..900&family=BIZ+UDPMincho:wght@400;700&family=Kaisei+Tokumin:wght@400;500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Noto+Serif+SC:wght@200..900&display=swap">
+  <link rel="stylesheet" href="../../../styles/typeset/tokens.css">
+  <link rel="stylesheet" href="../../../shared/base.css">
+  <link rel="stylesheet" href="../../../shared/icons.css">
+  <link rel="stylesheet" href="../../../styles/typeset/components.css">
+  <link rel="stylesheet" href="./style.css">
+  <script>
+    /* 在渲染前确定主题，避免闪烁：优先读取用户上次的选择，否则跟随系统 */
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('typeset-theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">跳到正文</a>
+
+  <header class="site">
+    <div class="container site__in">
+      <a class="brand" href="#top"><span data-icon="type" data-icon-class="icon--lg"></span><span class="brand__name">字面志</span></a>
+      <nav aria-label="本页目录">
+        <ul class="site__nav">
+          <li><a href="#anatomy">字形解剖</a></li>
+          <li><a href="#history">历史</a></li>
+          <li><a href="#compare">对比</a></li>
+          <li><a href="#tester">试排</a></li>
+          <li><a href="#vertical">竖排</a></li>
+          <li><a href="#tips">用法</a></li>
+        </ul>
+      </nav>
+      <button class="btn btn--icon btn--ghost btn--round" type="button" id="theme" aria-label="切换为深色主题" aria-pressed="false">
+        <span data-icon="moon" class="theme__moon"></span><span data-icon="sun" class="theme__sun"></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero container" id="top" aria-labelledby="heroTitle">
+      <div class="hero__body">
+        <h1 class="visually-hidden" id="heroTitle">明朝体</h1>
+        <p class="hero__lede">明朝体是日本最通用的衬线汉字字体，对应中文里的宋体、明体。它的特征一句话就能说完：<strong>横画细，竖画粗，横画收笔处有一个小三角。</strong>这一页带你看清它的结构与来历，并让你亲手试排。</p>
+        <ul class="hero__facts">
+          <li><span data-icon="languages"></span><span>对应中文：宋体、明体</span></li>
+          <li><span data-icon="ruler"></span><span>最大的特征：横细竖粗，收笔有“鱗”</span></li>
+          <li><span data-icon="book-open"></span><span>常见用途：书籍、报刊、长文与标题</span></li>
+        </ul>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#tester"><span data-icon="type"></span>去试排</a>
+          <a class="btn" href="#anatomy"><span data-icon="ruler"></span>看字形解剖</a>
+        </div>
+      </div>
+      <div class="hero__vertical" aria-hidden="true">
+        <span class="hero__big">明朝体</span>
+        <span class="hero__sub">横は細く、縦は太く。</span>
+      </div>
+    </section>
+
+    <section class="section container" id="anatomy" aria-labelledby="anatomyH">
+      <h2 class="section__title" id="anatomyH"><span data-icon="ruler"></span>字形解剖</h2>
+      <p class="section__lede">选一个特征，看它落在字的哪里。切换不同的明朝体，可以对照同一个“永”字的差别。</p>
+      <div class="anatomy">
+        <div class="anatomy__stage">
+          <div class="chips" id="glyphFonts" role="group" aria-label="切换字体"></div>
+          <div class="glyph" id="glyph">
+            <span class="glyph__char" lang="ja">永</span>
+            <span class="glyph__ring" id="ring" hidden></span>
+          </div>
+        </div>
+        <ul class="features" id="features"></ul>
+      </div>
+    </section>
+
+    <section class="section container" id="history" aria-labelledby="historyH">
+      <h2 class="section__title" id="historyH"><span data-icon="history"></span>历史脉络</h2>
+      <ol class="timeline" id="timeline"></ol>
+      <p class="note">以上为概要，具体年代与人物请以专业资料为准。</p>
+    </section>
+
+    <section class="section container" id="compare" aria-labelledby="compareH">
+      <h2 class="section__title" id="compareH"><span data-icon="columns-2"></span>明朝体与黑体</h2>
+      <p class="section__lede">同一句话、同样的字号。拖动滑块，看细横线在小字号下如何“消失”；再切换到深色主题，看它在深色底上又会怎样。</p>
+      <div class="compare">
+        <div class="range compare__ctl">
+          <div class="range__head"><label for="cmpSize">字号</label><output id="cmpSizeOut" for="cmpSize"></output></div>
+          <input type="range" id="cmpSize" min="10" max="72" step="1" value="26">
+        </div>
+        <div class="compare__panels">
+          <article class="card panel">
+            <h3 class="panel__label">明朝体 <span>Zen Old Mincho</span></h3>
+            <p class="panel__sample panel__sample--mincho" id="cmpMincho" lang="ja"></p>
+            <p class="panel__sample panel__sample--mincho" id="cmpMinchoZh" lang="zh-Hans"></p>
+          </article>
+          <article class="card panel">
+            <h3 class="panel__label">黑体 <span>Zen Kaku Gothic New</span></h3>
+            <p class="panel__sample panel__sample--gothic" id="cmpGothic" lang="ja"></p>
+            <p class="panel__sample panel__sample--gothic" id="cmpGothicZh" lang="zh-Hans"></p>
+          </article>
+        </div>
+        <p class="hint" id="cmpHint" role="status" aria-live="polite"><span data-icon="info" data-icon-class="icon--sm"></span><span id="cmpHintText"></span></p>
+      </div>
+    </section>
+
+    <section class="section container" id="tester" aria-labelledby="testerH">
+      <h2 class="section__title" id="testerH"><span data-icon="type"></span>试排台</h2>
+      <p class="section__lede">换字体，改文字，调字号、字重、行距与字距，切换横排与竖排。满意后可以直接复制 CSS。</p>
+      <div class="chips" id="fontChips" role="group" aria-label="选择字体"></div>
+      <p class="font-note" id="fontNote"></p>
+      <div class="tester">
+        <div class="tester__controls card">
+          <div class="chips" id="presets" role="group" aria-label="示例文字"></div>
+          <label class="visually-hidden" for="textIn">试排文字</label>
+          <textarea class="textarea" id="textIn" rows="3" spellcheck="false"></textarea>
+          <div class="range"><div class="range__head"><label for="sizeIn">字号</label><output id="sizeOut" for="sizeIn"></output></div><input type="range" id="sizeIn" min="12" max="160" step="1" value="56"></div>
+          <div class="range"><div class="range__head"><label for="weightIn">字重</label><output id="weightOut" for="weightIn"></output></div><input type="range" id="weightIn" min="200" max="900" step="100" value="500"></div>
+          <div class="range"><div class="range__head"><label for="leadIn">行距</label><output id="leadOut" for="leadIn"></output></div><input type="range" id="leadIn" min="1" max="2.4" step="0.1" value="1.6"></div>
+          <div class="range"><div class="range__head"><label for="trackIn">字距</label><output id="trackOut" for="trackIn"></output></div><input type="range" id="trackIn" min="-0.05" max="0.3" step="0.01" value="0"></div>
+          <div class="seg" id="dir" role="group" aria-label="排版方向">
+            <button type="button" data-dir="h" aria-pressed="true"><span data-icon="move-horizontal" data-icon-class="icon--sm"></span>横排</button>
+            <button type="button" data-dir="v" aria-pressed="false"><span data-icon="move-vertical" data-icon-class="icon--sm"></span>竖排</button>
+          </div>
+        </div>
+        <div class="tester__out">
+          <div class="tester__preview" id="preview" lang="ja"></div>
+          <div class="snippet">
+            <pre id="snippet" tabindex="0"></pre>
+            <button class="btn btn--sm" type="button" id="copy"><span data-icon="copy" data-icon-class="icon--sm"></span><span id="copyLabel">复制 CSS</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="vertical" aria-labelledby="verticalH">
+      <h2 class="section__title" id="verticalH"><span data-icon="quote"></span>縦書き</h2>
+      <p class="section__lede">竖排从右往左读，标点落在字的右下方。明朝体原本就是为竖排的书页设计的。</p>
+      <div class="seg" id="vDir" role="group" aria-label="切换排版方向">
+        <button type="button" data-dir="v" aria-pressed="true"><span data-icon="move-vertical" data-icon-class="icon--sm"></span>竖排</button>
+        <button type="button" data-dir="h" aria-pressed="false"><span data-icon="move-horizontal" data-icon-class="icon--sm"></span>横排</button>
+      </div>
+      <figure class="vertical" id="vFig">
+        <figcaption class="vertical__cap" id="vCap"></figcaption>
+        <div class="vertical__text" id="vText" lang="ja" tabindex="0"></div>
+      </figure>
+    </section>
+
+    <section class="section container" id="tips" aria-labelledby="tipsH">
+      <h2 class="section__title" id="tipsH"><span data-icon="lightbulb"></span>用法建议</h2>
+      <ul class="tips" id="tipList"></ul>
+    </section>
+  </main>
+
+  <footer class="foot container">
+    <p>示例页面。文字内容为示例性介绍，史实以专业资料为准；文中的字体均来自 Google Fonts，采用 SIL OFL 许可。</p>
+    <a class="foot__back" href="../../../index.html"><span data-icon="columns-2" data-icon-class="icon--sm"></span>返回示例总览</a>
+  </footer>
+
+  <script src="../../../shared/icons.js"></script>
+  <script src="./data.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>
