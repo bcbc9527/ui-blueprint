@@ -1,0 +1,66 @@
+/* Style: photo-dark(摄影暗色,500px 式)
+   中性深灰的画布,界面只有灰阶,颜色全部交给照片;唯一的蓝只用于“当前/主操作”。
+   令牌名遵守 styles/_template 的契约;文末 extension 是本风格的补充。 */
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap");
+
+:root {
+  color-scheme: dark;
+
+  /* color:纯灰阶,不带色偏,避免和照片抢色 */
+  --color-bg: #121212;
+  --color-surface: #1c1c1c;
+  --color-surface-alt: #262626;
+  --color-text: #f0f0f0;
+  --color-text-muted: #a3a3a3;
+  --color-border: #333333;
+  --color-primary: #0b6fd6;         /* 主操作的底色,上面放白字(对比度 5:1) */
+  --color-primary-hover: #0a5eb5;
+  --color-primary-contrast: #ffffff;
+  --color-accent-soft: #14304d;
+
+  /* font:细字重的大字 + 清晰的小字 */
+  --font-sans: "Noto Sans SC", ui-sans-serif, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-display: "Hanken Grotesk", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* type scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.75rem;
+  --text-2xl: clamp(2rem, 4.2vw, 3rem);
+  --text-3xl: clamp(2.5rem, 6vw, 4.5rem);
+
+  /* space */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 5rem;
+
+  /* shape & depth:照片几乎是直角;靠明度分层,不用阴影 */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --shadow-sm: none;
+  --shadow-md: none;
+
+  /* layout & motion */
+  --container: 1360px;
+  --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+  --duration: 200ms;
+
+  /* extension */
+  --color-link: #6db8ff;            /* 深色底上可读的蓝(对比度 ≥ 7:1),用于当前标签与链接 */
+  --color-scrim: rgb(0 0 0 / 0.72); /* 照片上承托文字的压暗层 */
+  --space-9: 7rem;
+  --gutter: clamp(1rem, 3vw, 2rem);
+  --photo-gap: 4px;
+  --row-h: 260px;                   /* 照片墙的目标行高 */
+}
+@media (max-width: 640px) { :root { --row-h: 150px; } }
+@media (min-width: 1400px) { :root { --row-h: 300px; } }

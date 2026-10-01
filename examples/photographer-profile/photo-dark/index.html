@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>陈屿 — 摄影师主页(摄影暗色)</title>
+  <meta name="description" content="摄影暗色风格的摄影师主页示例:封面、行式照片墙、灯箱与拍摄参数。">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../../../styles/photo-dark/tokens.css">
+  <link rel="stylesheet" href="../../../shared/base.css">
+  <link rel="stylesheet" href="../../../styles/photo-dark/components.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="top__in container">
+      <strong class="top__brand">拾光</strong>
+      <nav aria-label="站点导航"><ul class="top__nav"><li>发现</li><li>摄影师</li><li>图库</li></ul></nav>
+      <a class="top__back" href="../../../index.html">返回示例总览</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="cover" id="cover" role="img" aria-label="封面图(占位图)"></div>
+
+    <section class="profile container" aria-labelledby="name">
+      <div class="profile__avatar" id="avatar"></div>
+      <div class="profile__main">
+        <h1 class="profile__name" id="name"></h1>
+        <p class="profile__meta" id="meta"></p>
+        <p class="profile__tagline" id="tagline"></p>
+        <dl class="stats" id="stats"></dl>
+      </div>
+      <div class="profile__actions">
+        <button class="btn btn-primary" id="follow" type="button" aria-pressed="false">关注</button>
+        <button class="btn" id="share" type="button">分享</button>
+        <span class="profile__status" id="status" role="status" aria-live="polite"></span>
+      </div>
+    </section>
+
+    <div class="tabs-bar">
+      <div class="container">
+        <div class="tabs" role="tablist" aria-label="主页内容">
+          <button role="tab" id="tab-photos" aria-controls="panel-photos" aria-selected="true">照片</button>
+          <button role="tab" id="tab-galleries" aria-controls="panel-galleries" aria-selected="false" tabindex="-1">图集</button>
+          <button role="tab" id="tab-about" aria-controls="panel-about" aria-selected="false" tabindex="-1">关于</button>
+        </div>
+      </div>
+    </div>
+
+    <section class="panel container" id="panel-photos" role="tabpanel" aria-labelledby="tab-photos">
+      <div class="panel__head">
+        <div class="tags" id="cats" role="group" aria-label="按分类筛选"></div>
+        <p class="panel__count" id="count" role="status" aria-live="polite"></p>
+      </div>
+      <ul class="wall" id="wall"></ul>
+    </section>
+
+    <section class="panel container" id="panel-galleries" role="tabpanel" aria-labelledby="tab-galleries" hidden>
+      <ul class="galleries" id="galleries"></ul>
+    </section>
+
+    <section class="panel container" id="panel-about" role="tabpanel" aria-labelledby="tab-about" hidden>
+      <div class="about">
+        <div class="about__bio"><h2>关于我</h2><div class="prose" id="bio"></div></div>
+        <div class="about__side">
+          <h2>器材</h2><dl class="kv" id="gear"></dl>
+          <h2>经历</h2><dl class="kv" id="honors"></dl>
+          <h2>联系</h2><p id="contact"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot container">
+    <p>示例页面。人物、作品、器材、奖项均为虚构,图片为免费图床的占位图。</p>
+    <a href="../../../index.html">返回示例总览</a>
+  </footer>
+
+  <dialog class="lb" id="lb" aria-labelledby="lbTitle">
+    <div class="lb__stage">
+      <button class="lb__close" type="button" id="lbClose" aria-label="关闭">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <button class="lb__nav lb__nav--prev" type="button" id="lbPrev" aria-label="上一张">
+        <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M15 4l-8 8 8 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <figure class="lb__fig" id="lbFig"></figure>
+      <button class="lb__nav lb__nav--next" type="button" id="lbNext" aria-label="下一张">
+        <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M9 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <aside class="lb__info">
+      <h2 class="lb__title" id="lbTitle"></h2>
+      <p class="lb__by" id="lbBy"></p>
+      <p class="lb__desc" id="lbDesc"></p>
+      <button class="btn lb__like" type="button" id="lbLike" aria-pressed="false"></button>
+      <h3 class="lb__sub">拍摄参数</h3>
+      <dl class="kv" id="lbExif"></dl>
+    </aside>
+  </dialog>
+
+  <script src="./data.js"></script>
+  <script src="./art.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>
