@@ -15,7 +15,8 @@ img, svg, video { max-width: 100%; display: block; }
 h1, h2, h3, h4 { margin: 0; line-height: 1.2; font-family: var(--font-display, var(--font-sans)); }
 p { margin: 0; }
 a { color: inherit; }
-:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+/* 焦点环:新风格提供 --focus-ring-* 令牌;括号里的回退值仅为兼容旧风格 */
+:focus-visible { outline: var(--focus-ring-width, 2px) solid var(--color-focus, var(--color-primary)); outline-offset: var(--focus-ring-offset, 2px); } /* token-check-ignore: 兼容旧风格的回退值 */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }

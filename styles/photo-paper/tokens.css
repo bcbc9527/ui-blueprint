@@ -1,6 +1,6 @@
 /* ============================================================================
-   Style: <风格名>(复制本目录为 styles/<风格名>/ 后修改)
-   用法:只改“值”,不要改令牌的名字——所有风格共用同一套名字,示例才能换皮。
+   Style: photo-paper(摄影铜版纸)
+   明亮的铜版纸质感:纸白的页面、墨色的字、宽阔的“过道”式留白,边界靠留白形成,不靠线框。
 
    令牌分三层——这是整个设计系统的骨架:
      第 1 层 ref(原始值)   调色板、间距/圆角/字号刻度。只有这一层写字面量,且只被第 2 层引用。
@@ -11,6 +11,8 @@
    换风格 = 改第 1 层的值 + 第 2 层的映射;示例与组件一行都不用动。
    令牌的完整约定与圆角用法见 docs/tokens.md。
    ========================================================================== */
+@import url("https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap");
+
 :root {
   /* ======================= 第 1 层 · ref(原始值) ======================= */
 
@@ -82,8 +84,8 @@
   --color-on-media: var(--ref-paper-a92);   /* 照片上悬浮按钮的底色 */
 
   /* 字体 */
-  --font-sans: ui-sans-serif, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;  /* 需要网络字体时在文件顶部 @import Google Fonts */
-  --font-display: var(--font-sans);
+  --font-sans: "Noto Sans SC", ui-sans-serif, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-display: "Schibsted Grotesk", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
   --weight-light: 300;
   --weight-regular: 400;
@@ -159,7 +161,7 @@
 
   /* 布局 */
   --container: 75rem;
-  --container-wide: 90rem;
+  --container-wide: 110rem;                 /* 本风格的页面更宽 */
   --wall-row-h: 16rem;                      /* 行式照片墙的目标行高 */
   --feed-aside-w: 26rem;                    /* 详情弹窗右栏宽度 */
   --viewer-w: min(100% - 2 * var(--pad-page), 105rem);   /* 详情弹窗的宽高 */

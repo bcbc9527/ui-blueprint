@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>光合 — 摄影社区发现页(摄影铜版纸)</title>
+  <meta name="description" content="摄影铜版纸风格的摄影社区发现页示例:宽版面、过道式留白、行式照片墙与详情弹窗。">
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../../../styles/photo-paper/tokens.css">
+  <link rel="stylesheet" href="../../../shared/base.css">
+  <link rel="stylesheet" href="../../../shared/icons.css">
+  <link rel="stylesheet" href="../../../styles/photo-paper/components.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a class="skip" href="#feed">跳到作品列表</a>
+
+  <header class="site">
+    <div class="container site__in">
+      <a class="brand" href="#" aria-label="光合 首页"><span data-icon="aperture" data-icon-class="icon--lg"></span><span class="brand__name">光合</span></a>
+      <nav aria-label="主导航">
+        <ul class="site__nav">
+          <li><a href="#feed" aria-current="page">发现</a></li>
+          <li><a href="#people">摄影师</a></li>
+          <li><a href="#feed">图库授权</a></li>
+          <li><a href="#feed">活动</a></li>
+        </ul>
+      </nav>
+      <form class="field site__search" role="search" id="searchForm">
+        <span data-icon="search"></span>
+        <input type="search" id="q" placeholder="搜索照片、摄影师、地点" aria-label="搜索照片、摄影师、地点" autocomplete="off">
+      </form>
+      <div class="site__tools">
+        <button class="btn btn--primary" type="button" id="upload"><span data-icon="plus"></span>上传</button>
+        <button class="btn btn--icon btn--round btn--ghost bell" type="button" aria-label="通知,有 3 条未读"><span data-icon="bell"></span><span class="bell__dot"></span></button>
+        <span class="avatar" id="me"></span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="pick container" aria-labelledby="pickTitle">
+      <button class="pick__photo photo" type="button" id="pickOpen" aria-label="查看大图"></button>
+      <div class="pick__body">
+        <span class="chip chip--soft"><span data-icon="sparkles" data-icon-class="icon--sm"></span>今日精选</span>
+        <h1 class="pick__title" id="pickTitle"></h1>
+        <div class="byline">
+          <span class="avatar" id="pickAvatar"></span>
+          <span class="byline__txt"><strong id="pickBy"></strong><span id="pickLoc"></span></span>
+          <button class="btn btn--sm" type="button" data-follow="1" aria-pressed="false">关注</button>
+        </div>
+        <p class="pick__desc" id="pickDesc"></p>
+        <ul class="stats" id="pickStats"></ul>
+        <div class="pick__actions">
+          <button class="btn btn--primary" type="button" id="pickView"><span data-icon="eye"></span>查看大图</button>
+          <button class="btn btn--icon" type="button" id="pickSave" aria-label="收藏" aria-pressed="false"><span data-icon="bookmark" data-icon-class="icon--fillable"></span></button>
+          <button class="btn btn--icon" type="button" id="pickShare" aria-label="分享"><span data-icon="share-2"></span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="feed container" id="feed" aria-labelledby="feedH">
+      <h2 class="visually-hidden" id="feedH">作品</h2>
+      <div class="feedbar">
+        <div class="feedbar__row" id="sorts" role="group" aria-label="排序">
+          <button class="chip" type="button" data-sort="hot" aria-pressed="true"><span data-icon="flame" data-icon-class="icon--sm"></span>热门</button>
+          <button class="chip" type="button" data-sort="new" aria-pressed="false"><span data-icon="clock" data-icon-class="icon--sm"></span>新作</button>
+          <button class="chip" type="button" data-sort="pick" aria-pressed="false"><span data-icon="award" data-icon-class="icon--sm"></span>编辑精选</button>
+        </div>
+        <div class="feedbar__row feedbar__cats" id="cats" role="group" aria-label="按分类筛选"></div>
+        <p class="feedbar__count" id="count" role="status" aria-live="polite"></p>
+      </div>
+      <ul class="wall" id="wall"></ul>
+      <div class="more">
+        <button class="btn" type="button" id="more"><span data-icon="chevron-down"></span>加载更多</button>
+        <p class="more__note" id="moreNote"></p>
+      </div>
+    </section>
+
+    <section class="people container" id="people" aria-labelledby="peopleH">
+      <h2 class="section-title" id="peopleH">值得关注的摄影师</h2>
+      <ul class="people__grid" id="peopleGrid"></ul>
+    </section>
+  </main>
+
+  <footer class="foot container">
+    <p>示例页面。人物、作品均为虚构,图片为免费图床的占位图。</p>
+    <a class="foot__back" href="../../../index.html"><span data-icon="images" data-icon-class="icon--sm"></span>返回示例总览</a>
+  </footer>
+
+  <p class="visually-hidden" id="live" role="status" aria-live="polite"></p>
+
+  <dialog class="viewer" id="viewer" aria-labelledby="vTitle">
+    <div class="viewer__stage">
+      <button class="btn btn--icon btn--round btn--on-media viewer__close" type="button" id="vClose" aria-label="关闭"><span data-icon="x"></span></button>
+      <button class="btn btn--icon btn--round btn--on-media viewer__nav viewer__nav--prev" type="button" id="vPrev" aria-label="上一张"><span data-icon="chevron-left"></span></button>
+      <figure class="viewer__fig" id="vFig"></figure>
+      <button class="btn btn--icon btn--round btn--on-media viewer__nav viewer__nav--next" type="button" id="vNext" aria-label="下一张"><span data-icon="chevron-right"></span></button>
+    </div>
+    <aside class="viewer__side">
+      <div class="byline">
+        <span class="avatar avatar--lg" id="vAvatar"></span>
+        <span class="byline__txt"><strong id="vBy"></strong><span class="byline__loc"><span data-icon="map-pin" data-icon-class="icon--sm"></span><span id="vLoc"></span></span></span>
+        <button class="btn btn--sm" type="button" data-follow="1" aria-pressed="false" id="vFollow">关注</button>
+      </div>
+      <div>
+        <h2 class="viewer__title" id="vTitle"></h2>
+        <p class="viewer__desc" id="vDesc"></p>
+      </div>
+      <div class="tagrow" id="vTags"></div>
+      <div class="viewer__actions">
+        <button class="btn" type="button" id="vLike" aria-pressed="false"><span data-icon="heart" data-icon-class="icon--fillable"></span><span id="vLikeN"></span></button>
+        <span class="btn btn--ghost metric"><span data-icon="message-circle"></span><span id="vCommentN"></span></span>
+        <button class="btn btn--icon" type="button" id="vSave" aria-label="收藏" aria-pressed="false"><span data-icon="bookmark" data-icon-class="icon--fillable"></span></button>
+        <button class="btn btn--icon" type="button" id="vShare" aria-label="分享"><span data-icon="share-2"></span></button>
+      </div>
+      <div>
+        <h3 class="viewer__sub">拍摄信息</h3>
+        <dl class="exif" id="vExif"></dl>
+      </div>
+      <div>
+        <h3 class="viewer__sub">评论</h3>
+        <ul class="comments" id="vComments"></ul>
+        <form class="field comment-form" id="commentForm">
+          <input type="text" id="commentIn" placeholder="写下你的看法" aria-label="写评论" autocomplete="off">
+          <button class="btn btn--icon btn--sm btn--primary" type="submit" aria-label="发送"><span data-icon="send" data-icon-class="icon--sm"></span></button>
+        </form>
+      </div>
+    </aside>
+  </dialog>
+
+  <script src="../../../shared/icons.js"></script>
+  <script src="./data.js"></script>
+  <script src="./art.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>

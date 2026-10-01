@@ -8,13 +8,22 @@ window.CATALOG = {
     blog: "博客/文章",
     "actor-profile": "演员主页",
     "photographer-profile": "摄影师主页",
+    "photo-feed": "摄影社区发现页",
   },
   styles: {
     "minimal-light": "极简浅色",
     "bright-modern": "明亮现代",
     "photo-dark": "摄影暗色",
+    "photo-paper": "摄影铜版纸",
   },
   examples: [
+    {
+      path: "examples/photo-feed/photo-paper/",
+      title: "光合 摄影社区发现页",
+      useCase: "photo-feed",
+      style: "photo-paper",
+      description: "铜版纸质感的宽版面:今日精选、过道式行式照片墙、排序与分类、详情弹窗(拍摄信息与评论)。",
+    },
     {
       path: "examples/photographer-profile/photo-dark/",
       title: "陈屿 摄影师主页",
