@@ -5,8 +5,18 @@
   var SVGNS = 'http://www.w3.org/2000/svg';
 
   /* ---------- 手绘红圈:每部作品一条固定的、略有抖动的路径 ---------- */
+  function hash(str) { var h = 2166136261; for (var i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+  function rng(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a |= 0; a = (a + 0x6d2b79f5) | 0;
+      var t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
   function scribbleCircle(seed) {
-    var r = window.Art.rng(window.Art.hash(seed));
+    var r = rng(hash(seed));
     var n = 64, pts = [], phase = r() * 6.28, start = r() * 6.28;
     for (var i = 0; i <= n; i++) {
       var t = i / n, a = start + t * (6.28 + 0.55);
@@ -20,7 +30,7 @@
   $('#nameZh').textContent = A.name;
   $('#nameEn').textContent = A.nameEn;
   $('#lede').textContent = A.lede;
-  $('#portraitImg').innerHTML = window.Art.portrait({ label: A.name + ' 的肖像示意图' });
+  $('#portraitImg').innerHTML = window.Art.portrait({ img: A.portraitImg, label: A.name + ' 的肖像(占位图)' });
   A.facts.forEach(function (f) { $('#facts').append(el('dt', '', f[0]), el('dd', '', f[1])); });
 
   var follow = $('#follow'), status = $('#status'), statusTimer;
@@ -111,7 +121,7 @@
 
   function render(i) {
     var w = frames[i].w; current = i;
-    $('#loupeImg').innerHTML = window.Art.still(w) + '<p class="loupe__edge"><span></span><span></span></p>';
+    $('#loupeImg').innerHTML = window.Art.still(w, 900, 600) + '<p class="loupe__edge"><span></span><span></span></p>';
     $('#loupeImg .loupe__edge span:first-child').textContent = w.year + ' 年 ' + w.type;
     $('#loupeImg .loupe__edge span:last-child').textContent = w.title;
     $('#loupeTitle').textContent = w.title;
@@ -154,7 +164,7 @@
   });
   A.costars.forEach(function (c) {
     var li = el('li', 'print');
-    var img = el('div', 'print__img', window.Art.portrait({ bg: c.bg, hair: c.hair, s: 5.2, label: c.name + ' 的肖像示意图' }));
+    var img = el('div', 'print__img', window.Art.portrait({ img: c.img, size: 300, label: c.name + ' 的肖像(占位图)' }));
     var name = el('p', 'print__name'); name.textContent = c.name;
     var note = el('p', 'print__note'); note.textContent = c.note;
     li.append(img, name, note);

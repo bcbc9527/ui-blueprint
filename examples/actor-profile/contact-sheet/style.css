@@ -22,7 +22,7 @@ h2 { font: 800 var(--text-2xl)/1 var(--font-display); font-stretch: 75%; letter-
 }
 .portrait { position: relative; margin: 0; align-self: start; }
 .portrait__img { aspect-ratio: 4 / 5; background: var(--color-film); overflow: hidden; border-radius: var(--radius-sm); }
-.portrait__img svg { width: 100%; height: 100%; display: block; animation: develop 1.6s var(--ease) both; }
+.portrait__img img { width: 100%; height: 100%; display: block; object-fit: cover; animation: develop 1.6s var(--ease) both; }
 /* 角标(裁切线):纯 CSS 画出,每个角是一横一竖 */
 .corner { position: absolute; width: var(--cl, 2.5rem); height: var(--cl, 2.5rem); pointer-events: none; }
 .corner::before, .corner::after { content: ""; position: absolute; background: var(--color-mark); border-radius: 2px; }
@@ -87,7 +87,7 @@ h2 { font: 800 var(--text-2xl)/1 var(--font-display); font-stretch: 75%; letter-
 
 .frame { min-width: 0; }
 .frame__btn { position: relative; display: block; width: 100%; aspect-ratio: 3 / 2; padding: 0; border: 0; background: #000; cursor: pointer; overflow: visible; color: inherit; }
-.frame__btn > svg:first-child { width: 100%; height: 100%; display: block; }
+.frame__btn > img { width: 100%; height: 100%; display: block; object-fit: cover; }
 .frame__btn:hover:not(:disabled) { outline: 2px solid var(--color-edge); outline-offset: 0; }
 .frame__btn:disabled { cursor: default; }
 .frame__btn:focus-visible { outline: 3px solid var(--color-bg); outline-offset: 2px; }
@@ -97,7 +97,7 @@ h2 { font: 800 var(--text-2xl)/1 var(--font-display); font-stretch: 75%; letter-
 .frame[data-viewed] .frame__crop { display: block; }
 .frame[data-off] .x-g { display: inline; }
 .frame[data-off] .mark--circle { display: none; }
-.frame[data-off] .frame__btn > svg:first-child { opacity: 0.3; }
+.frame[data-off] .frame__btn > img { opacity: 0.3; }
 .frame.is-new .corner::before { animation: grow-x 0.3s var(--ease) both; }
 .frame.is-new .corner::after { animation: grow-y 0.3s var(--ease) both; }
 .frame__cap { display: grid; gap: 2px; padding-top: var(--space-2); color: var(--color-edge); }
@@ -121,7 +121,7 @@ h2 { font: 800 var(--text-2xl)/1 var(--font-display); font-stretch: 75%; letter-
 .prints { display: flex; flex-wrap: wrap; gap: var(--space-5); list-style: none; margin: 0; padding: 0; }
 .print { width: 8.5rem; }
 .print__img { aspect-ratio: 3 / 4; background: var(--color-surface); padding: 6px 6px 0; border-radius: var(--radius-sm); box-shadow: inset 0 0 0 1px var(--color-border); }
-.print__img svg { width: 100%; height: 100%; display: block; }
+.print__img img { width: 100%; height: 100%; display: block; object-fit: cover; }
 .print__name { margin: var(--space-2) 0 0; font-weight: 700; }
 .print__note { margin: 0; font-size: var(--text-sm); color: var(--color-text-muted); }
 
@@ -135,7 +135,7 @@ h2 { font: 800 var(--text-2xl)/1 var(--font-display); font-stretch: 75%; letter-
 .loupe[open] { display: grid; }
 @media (min-width: 760px) { .loupe[open] { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
 .loupe__film { background: var(--color-film); padding: 22px 16px 10px; display: grid; align-content: center; }
-.loupe__film svg { width: 100%; aspect-ratio: 3 / 2; display: block; }
+.loupe__film img { width: 100%; aspect-ratio: 3 / 2; display: block; object-fit: cover; background: var(--color-film); }
 .loupe__edge { display: flex; justify-content: space-between; margin: 0; padding: var(--space-2) 0 var(--space-1); color: var(--color-edge); font: 600 var(--text-sm)/1.3 var(--font-sans); }
 .loupe__body { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-6); }
 .loupe__flag { margin: 0; display: flex; align-items: center; gap: var(--space-2); font-weight: 700; font-size: var(--text-sm); }
@@ -149,5 +149,5 @@ h2 { font: 800 var(--text-2xl)/1 var(--font-display); font-stretch: 75%; letter-
 .loupe__nav .btn:last-child { margin-left: auto; }
 
 @media (prefers-reduced-motion: reduce) {
-  .portrait__img svg, .corner::before, .corner::after { animation: none !important; }
+  .portrait__img img, .corner::before, .corner::after { animation: none !important; }
 }
