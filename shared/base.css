@@ -1,0 +1,21 @@
+/* 与风格无关的最小基础层:重置 + 无障碍基线。
+   所有颜色/字体/间距都必须来自风格的 tokens.css,这里不写任何具体视觉值。 */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img, svg, video { max-width: 100%; display: block; }
+h1, h2, h3, h4 { margin: 0; line-height: 1.2; font-family: var(--font-display, var(--font-sans)); }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

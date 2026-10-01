@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UI Blueprint — 示例总览</title>
+  <meta name="description" content="多种风格与用途的前端页面示例与设计风格指引">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="assets/gallery.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <h1>UI Blueprint</h1>
+      <p>多种风格 × 多种用途的前端示例,作为 AI 前端开发的风格指引。</p>
+    </div>
+  </header>
+  <main class="wrap">
+    <div class="filters" aria-label="筛选">
+      <div class="group" id="f-use" role="group" aria-label="按用途"></div>
+      <div class="group" id="f-style" role="group" aria-label="按风格"></div>
+    </div>
+    <p class="count" id="count" aria-live="polite"></p>
+    <div class="cards" id="cards"></div>
+  </main>
+  <script src="assets/catalog.js"></script>
+  <script src="assets/gallery.js"></script>
+</body>
+</html>

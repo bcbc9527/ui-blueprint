@@ -1,0 +1,22 @@
+/* 仅放这个示例独有的版式;颜色/字号/间距一律用令牌。 */
+.brand { font-family: var(--font-display); font-size: var(--text-lg); }
+.hero { padding-block: var(--space-8) var(--space-7); display: grid; gap: var(--space-5); justify-items: start; }
+.hero h1 { font-size: var(--text-3xl); letter-spacing: -0.02em; }
+.lead { font-size: var(--text-lg); color: var(--color-text-muted); max-width: 36ch; }
+.actions { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+.section { padding-block: var(--space-7); display: grid; gap: var(--space-5); }
+.section h2 { font-size: var(--text-xl); }
+.grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.grid.two { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.card { display: grid; gap: var(--space-3); align-content: start; }
+.card h3 { font-size: var(--text-lg); }
+.card p { color: var(--color-text-muted); }
+.price { font-family: var(--font-display); font-size: var(--text-2xl); color: var(--color-text) !important; }
+.price small { font-size: var(--text-sm); color: var(--color-text-muted); }
+.plan-pro { border-color: var(--color-primary); }
+summary { cursor: pointer; font-weight: 600; }
+details p { margin-top: var(--space-3); }
+details + details { margin-top: var(--space-3); }
+.foot { padding-block: var(--space-7); color: var(--color-text-muted); font-size: var(--text-sm); border-top: 1px solid var(--color-border); }
+.card .btn { justify-self: start; }
+details.card { display: block; }
